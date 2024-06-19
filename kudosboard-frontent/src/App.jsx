@@ -4,12 +4,13 @@ import { useState } from 'react'
 import './App.css'
 import SearchBar from './SearchBar'
 import CardBoard from './CardBoard'
-
+import CreateCardModal from './CreateCardModal'
+import { BrowserRouter as Router } from 'react-router-dom'; /* navigate page*/
 function App() {
-  const [count, setCount] = useState(0)
+  const [isCardCreatorOpen, setIsCardCreatorOpen] = useState(false);
 
   return (
-    <>
+    <Router>
       {/* <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -18,17 +19,18 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div> */}
-      <header>
-      <h1>Kudosboard</h1>
-      <SearchBar/>
+      <header className="header">
+      <h1 className="title">Kudosboard</h1>
+      <SearchBar setIsCardCreatorOpen={setIsCardCreatorOpen}/>
       </header>
-      
+      <CreateCardModal isCardCreatorOpen={isCardCreatorOpen} setIsCardCreatorOpen={setIsCardCreatorOpen}/>
+
       <div className="card">
       <CardBoard/>
        
       </div>
   
-    </>
+    </Router>
   )
 }
 

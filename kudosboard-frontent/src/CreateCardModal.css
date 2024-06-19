@@ -1,0 +1,31 @@
+.createcardmodal {
+    border-radius: 8px;
+    width:250px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    display: inline-block;
+    align-items: center;
+
+    font-family: inherit;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    margin: 15px;
+}
+.title, .author {
+    display:flex;
+    align-items: center;
+}
+#createmodal {
+      position: fixed; /* Sit on top of the page content */
+  /* display: none; */
+  /* width: 100%; 
+  height: 100%;  */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 4; 
+  align-items: center; /* Vertical centering */
+  justify-content: center; /* Horizontal centering */
+}

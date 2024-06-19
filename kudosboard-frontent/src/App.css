@@ -4,6 +4,14 @@
   padding: 2rem;
   text-align: center;
 }
+.header {
+  display: inline-flex;
+}
+.title {
+  font-family: monospace;
+  color:rgb(230, 0, 35);
+  font-size: 23px;
+}
 /* .logo {
   height: 6em;
   padding: 1.5em;
