@@ -15,6 +15,7 @@ datasource db {
 
 model Board {
   id      Int    @id @default(autoincrement())
+  name    String
   cards   Card[] 
 }
 
