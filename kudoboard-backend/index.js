@@ -3,8 +3,10 @@ const app = express()
 const PORT = 3000
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
+const cors = require('cors')
 
 app.use(express.json());
+app.use(cors());
 let cards = [
   {id:1, title: "First Card", comment: "This is my first card.", author: "Eduardo Ramos", boardId: 1},
   {id:2, title: "First Card", comment: "This is my first card.", author: "Eduardo Ramos", boardId: 1}
@@ -24,8 +26,8 @@ app.get('/cards/:id', (req, res) => {
     res.status(404).send('card not here')
   }
 });
-/*CREATES BOARD in DATABASE show up on board insomnia
-and also in npx prisma studio*/
+/*CREATES and GETS BOARD/S in DATABASE show up on board 
+insomnia and also in npx prisma studio*/
 app.get('/board/:id', async(req, res) => {
   const {id} = req.params
   const board = await prisma.board.findUnique(
@@ -45,6 +47,25 @@ app.post('/board', async (req, res) => {
   res.status(201).json(newBoard)
 });
 
+app.get('/board', async (req, res) => {
+  // res.send('card');
+  const boards = await prisma.board.findMany();
+  res.json(boards)
+});
+/* ATTEMPTING TO MAKE LINKED CARDS*/
+app.post('/board/cards', async (req, res) => {
+  const {id, title, comment, author, boardId} = req.body;
+  const newCard = await prisma.card.create({
+    data: {
+      id, 
+      title,
+      comment,
+      author,
+      boardId
+    }
+  })
+  res.status(201).json(newCard)
+});
 
 // app.post('/board/:id/card', async (req, res) => {
 //   const {title, comment, author, boardId} = req.body
