@@ -13,7 +13,8 @@ function Card(props) {
         return <div ></div>
     }
     function handleCardClose (event) {
-        console.log(event)
+        let closingcard = event.target.closest('.cardtemplate')
+        closingcard.remove();
     }
     return (
     <div className="cardtemplate">
