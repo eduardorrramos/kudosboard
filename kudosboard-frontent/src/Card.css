@@ -1,17 +1,14 @@
 .cardtemplate {
-    /* border:1px solid black; */
     margin: 5px;
     width:250px;
     height:250px;
     display: inline-block;
     position: relative;
-    border-radius: 15px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light gray background */
+    border-radius: 15px; 
+    background-color: #f9f9f9; 
 
 }
 .cardtitle {
-    /* align-self: bottom; */
-    /* position: absolute; */
     margin-left: 15px;
     margin-top: 5px;
     display: flex;
@@ -27,6 +24,6 @@
 }
 .topOfCard {
     display: flex;
-    justify-content: space-between; /* This will place the title on one end and the button on the other end of the div */
+    justify-content: space-between; 
 
 }

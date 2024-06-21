@@ -11,6 +11,7 @@ import Header from './Header'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; /* navigate page*/
 function App() {
   const [isCardCreatorOpen, setIsCardCreatorOpen] = useState(false);
+  const [selectedKeyword, setSelectedKeyword] = useState('');
 
   return (
     <Router>
@@ -18,7 +19,7 @@ function App() {
       <Header/>
       <header className="header">
       <h1 className="title">Kudosboard</h1>
-      <SearchBar setIsCardCreatorOpen={setIsCardCreatorOpen}/>
+      <SearchBar setSelectedKeyword={setSelectedKeyword} setIsCardCreatorOpen={setIsCardCreatorOpen}/>
       </header>
 
       <CreateCardModal isCardCreatorOpen={isCardCreatorOpen} setIsCardCreatorOpen={setIsCardCreatorOpen}/>
@@ -27,7 +28,7 @@ function App() {
 
       <Switch>
         <Route exact path='/'>
-        <CardBoard/>
+        <CardBoard selectedKeyword={selectedKeyword}/>
         </Route>
         
         <Route path='/details/:id'>

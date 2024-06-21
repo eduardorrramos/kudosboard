@@ -6,11 +6,12 @@ import SearchBar from './SearchBar';
 import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 
-function CardBoard() {
+function CardBoard({selectedKeyword}) {
     const [card, setCard] = useState([]);
     const [selectedCat, setSelectedCat] = useState('');
     let filteredCards = [];
 
+    console.log({selectedKeyword})
     function handleCardClose (event) {
         let closingcard = event.target.closest('.cardtemplate')
         closingcard.remove();
@@ -51,7 +52,11 @@ function CardBoard() {
       const collectRecent = () => {
         setSelectedCat('Recent'); // update the selected category state variable
       };
-      if (selectedCat === 'Recent') {
+
+      if (selectedKeyword !== '') {
+        filteredCards = card.filter(card => card.title == selectedKeyword);
+      }
+      else if (selectedCat === 'Recent') {
         filteredCards = card.sort((a, b) => b.id - a.id);
 
         console.log(filteredCards)
@@ -60,6 +65,7 @@ function CardBoard() {
       filteredCards = card.filter(card => card.category === selectedCat ||
         selectedCat ==='');
       }
+
       const cardComponents = filteredCards.map(individual => {
         return (
             <div className="cardtemplate">
