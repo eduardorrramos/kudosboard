@@ -1,0 +1,9 @@
+.cardinsideofboard {
+    margin: 5px;
+    width:250px;
+    height:250px;
+    display: inline-block;
+    position: relative;
+    border-radius: 15px; 
+    background-color: #f9f9f9; 
+}
