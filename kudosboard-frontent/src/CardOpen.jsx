@@ -123,11 +123,10 @@ const getBoardCardData = () => {
             <h3 className="cardtitle"> {oneboardcards.id} </h3>
             <h3 className="cardtitle"> {oneboardcards.comment} </h3>
             <h3 className="cardtitle"> {oneboardcards.author} </h3>
+            <img src={imgURL} alt="gif" />
         </div>
         );
-
         });
-
     return (
         <div>
             <div className="modalboard">
@@ -145,7 +144,6 @@ const getBoardCardData = () => {
             </Link>
             </div>
             {boardCards}
-            
         </div>
     );
 }
