@@ -4,10 +4,31 @@ import './ListCardForm.css';
 function ListCardForm ({addItem}) {
     const [formData, setFormData] = useState({title: "", category: '', author: ''});
     function handleSubmit(event) {
-        event.preventDefault();
-        console.log(event);
-        addItem(formData);
-        setFormData({title: "", category: "", author: ""});
+        console.log("submitting")
+        // event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        console.log(Array.from(formData.entries()));
+
+        fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/board`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    title: formData.get("title"),
+                    category: formData.get("category"),
+                    author: formData.get("author"),
+                    cards: []
+                }),
+            }
+        )
+
+        // addItem(formData);
+        // setFormData({title: "", category: "", author: ""});
     }
 /* one thought, event.target. is not specifying the correct things
 the actual . also, event.target is referencing the button modal 

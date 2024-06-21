@@ -25,7 +25,7 @@ function App() {
         <CardBoard/>
         </Route>
         
-        <Route path='/details'>
+        <Route path='/details/:id'>
         <CardOpen/>
         </Route>
 

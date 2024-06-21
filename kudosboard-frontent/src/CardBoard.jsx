@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom';
 function CardBoard() {
     function handleCardClick (event)  {
         console.log(event.target)
-        navigate('/chosencard');
+        // navigate('/chosencard');
         return <div ></div>
     }
     function handleCardClose (event) {
@@ -48,8 +48,8 @@ function CardBoard() {
             <h3 className="cardtitle"> {individual.name} </h3>
 
             <button onClick={handleCardClose} className="cardCloseButton"></button> </div>
-            <Link to="/details">
-            <button onClick={handleCardClick} className="viewCardBoard">View Board</button>
+            <Link to={`/details/${individual.id}`}>
+            <button className="viewCardBoard">View Board</button>
             </Link>
         </div>
         
