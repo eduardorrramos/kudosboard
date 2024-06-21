@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import CardBoard from './CardBoard';
 
 function Card(props) {
-    
+    console.log(props)
     function handleCardClick (event)  {
         console.log(event.target)
         // navigate('/chosencard');
@@ -21,6 +21,10 @@ function Card(props) {
         <div className="topOfCard">
         <h3 className="cardtitle"> {props.id} </h3>
         <h3 className="cardtitle"> {props.name} </h3>
+        <h3 className="cardtitle"> {props.category} </h3>
+        {/* <img src="Https://picsum.photos/200/300?random" className="cardtitle">  </img> */}
+
+
 
         <button onClick={handleCardClose} className="cardCloseButton"></button> </div>
         <Link to={`/details/${props.id}`}>

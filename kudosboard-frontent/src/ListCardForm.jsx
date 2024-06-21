@@ -56,16 +56,16 @@ of data from one to the other*/
         <div>
         <label >Category</label>
         <select id="category" name="category" className="category">
-            <option value="volvo">Lifestyle</option>
-            <option value="saab">Vacation</option>
-            <option value="mercedes">Nightlife</option>
-            <option value="audi">Nature</option>
+            <option value="Lifestyle">Lifestyle</option>
+            <option value="Vacation">Vacation</option>
+            <option value="Nightlife">Nightlife</option>
+            <option value="Nature">Nature</option>
         </select>
         </div>
 
         <div>
             <label >Author</label>
-            <input type="text" id="author" name="author" className="author"></input>
+            <input type="text" id="author" name="author" className="author" ></input>
         </div>
       
      </div>

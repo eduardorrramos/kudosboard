@@ -63,10 +63,14 @@ function CardBoard() {
       const cardComponents = filteredCards.map(individual => {
         return (
             <div className="cardtemplate">
-            <div className="topOfCard">
+               <div className="topOfCard">
             <h3 className="cardtitle"> {individual.id} </h3>
             <h3 className="cardtitle"> {individual.title} </h3>
-            <button onClick={handleCardClose} className="cardCloseButton"></button> </div>
+            <button onClick={handleCardClose} className="cardCloseButton"></button> 
+               </div>
+               <div><h3 className="cardtitle"> {individual.category} </h3>
+               <img src={`https://picsum.photos/id/${individual.id}/200/300?grayscale`}/>
+            <h3 className="cardtitle"> {individual.author} </h3></div>
             {/* add image here */}
             <Link to={`/details/${individual.id}`}>
             <button className="viewCardBoard">View Board</button>

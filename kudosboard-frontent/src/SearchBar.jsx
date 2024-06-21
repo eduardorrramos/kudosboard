@@ -4,11 +4,9 @@ import './SearchBar.css'
 import { useState } from 'react';
 
 function SearchBar({setIsCardCreatorOpen}) {
-
     function handleCreateButton() {
         setIsCardCreatorOpen(true);
     }
-
     return (
         <div className="searchbar"> 
             <input className="actualSearchBar" type="text" placeholder="Search..." />
@@ -18,3 +16,4 @@ function SearchBar({setIsCardCreatorOpen}) {
     );
 }
 export default SearchBar;
+
