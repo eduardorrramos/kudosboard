@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom';
 function CardBoard() {
     const [card, setCard] = useState([]);
     const [selectedCat, setSelectedCat] = useState('');
+    let filteredCards = [];
 
     function handleCardClose (event) {
         let closingcard = event.target.closest('.cardtemplate')
@@ -48,12 +49,17 @@ function CardBoard() {
         setSelectedCat('Nature'); // update the selected category state variable
       };
       const collectRecent = () => {
-        setSelectedCat('Nature'); // update the selected category state variable
+        setSelectedCat('Recent'); // update the selected category state variable
       };
+      if (selectedCat === 'Recent') {
+        filteredCards = card.sort((a, b) => b.id - a.id);
 
-      const filteredCards = card.filter(card => card.category === selectedCat ||
+        console.log(filteredCards)
+      }
+      else {
+      filteredCards = card.filter(card => card.category === selectedCat ||
         selectedCat ==='');
-
+      }
       const cardComponents = filteredCards.map(individual => {
         return (
             <div className="cardtemplate">
