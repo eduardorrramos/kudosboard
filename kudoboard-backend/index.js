@@ -7,27 +7,19 @@ const cors = require('cors')
 
 app.use(express.json());
 app.use(cors());
-let cards = [
-  {id:1, title: "First Card", comment: "This is my first card.", author: "Eduardo Ramos", boardId: 1},
-  {id:2, title: "First Card", comment: "This is my first card.", author: "Eduardo Ramos", boardId: 1}
-]
 
-app.get('/cards', (req, res) => {
-  res.json(cards)
+
+app.post('/board', async (req, res) => {
+  const {name, id} = req.body;
+  const newBoard = await prisma.board.create(
+    {
+    data: {
+    id,
+    name
+    }
+  });
+  res.status(201).json(newBoard)
 });
-app.get('/cards/:id', (req, res) => {
-  const id = parseInt(req.params.id)
-  console.log(id)
-  const card = cards.find(card =>card.id ===id)
-  if (card) {
-    res.json(card)
-  }
-  else {
-    res.status(404).send('card not here')
-  }
-});
-/*CREATES and GETS BOARD/S in DATABASE show up on board 
-insomnia and also in npx prisma studio*/
 app.get('/board/:id', async(req, res) => {
   const {id} = req.params
   const board = await prisma.board.findUnique(
@@ -36,22 +28,26 @@ app.get('/board/:id', async(req, res) => {
     });
   res.status(200).json(board);
 });
-app.post('/board', async (req, res) => {
-  const {name, id} = req.body;
-  const newBoard = await prisma.board.create({
-    data: {
-    id,
-    name
-    }
-  })
-  res.status(201).json(newBoard)
-});
-
+// app.get('/card/:id', async(req, res) => {
+//   const {id} = req.params
+//   const card = await prisma.Card.findUnique(
+//     {
+//       where: {boardId:parseInt(id)},
+//     });
+//   res.status(200).json(card);
+// });
+/*GETTING ALL BOARDS OR ALL CARDS */
 app.get('/board', async (req, res) => {
   // res.send('card');
   const boards = await prisma.board.findMany();
   res.json(boards)
 });
+app.get('/card', async (req, res) => {
+  // res.send('card');
+  const cards = await prisma.Card.findMany();
+  res.json(cards)
+});
+
 /* ATTEMPTING TO MAKE LINKED CARDS*/
 app.post('/board/cards', async (req, res) => {
   const {id, title, comment, author, boardId} = req.body;
@@ -66,6 +62,39 @@ app.post('/board/cards', async (req, res) => {
   })
   res.status(201).json(newCard)
 });
+/* DOES NOT WORK CAN NOT FETCH ALL CARDS*/
+// app.get('/board/:category', async (req, res) => {
+//   // res.send('card');
+//   const cards = await prisma.card.findMany();
+//   res.json(cards)
+// });
+/* FILTERING RESULTS WITH QUERY PARAMETERS*/
+// app.get('/board/:name', async(req, res) => {
+//   const {names} = req.params; 
+//   const board = await prisma.board.findUnique(
+//     {
+//       where: {name:parseInt(names)},
+//     });
+//   res.status(200).json(board);
+// });
+//   let query = 'SELECT * FROM board'
+//   const queryParams = []
+//   const conditions = []
+// if (req.query.type) {
+//   queryParams.push(req.query.type)
+//   conditions.push('type = ${queryParams.length}')
+// }
+
+//   const {name} = req.params
+//   const board = await prisma.board.findUnique(
+//     {
+//       where: {name:parseInt(name)},
+//     });
+
+
+
+
+
 
 // app.post('/board/:id/card', async (req, res) => {
 //   const {title, comment, author, boardId} = req.body
@@ -81,11 +110,6 @@ app.post('/board/cards', async (req, res) => {
 //   cards.push(newCard)
 //   res.status(201).json(newCard)
 // });
-app.get('/card', async (req, res) => {
-  // res.send('card');
-  const cards = await prisma.Card.findMany();
-  res.json(cards)
-});
 
 app.get('/', (req, res) => {
     res.send(`
@@ -103,6 +127,10 @@ app.get('/', (req, res) => {
   app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
   });
+
+
+
+
 
   /* res.send('welcome to my world')
 
@@ -138,3 +166,27 @@ app.get('/', (req, res) => {
 //   const cards = await prisma.Card.findMany();
 //   res.json(cards)
 //   res.send('You clicked on a card!') */
+
+
+// app.get('/cards', (req, res) => {
+//   res.json(cards)
+// });
+// app.get('/cards/:id', (req, res) => {
+//   const id = parseInt(req.params.id)
+//   console.log(id)
+//   const card = cards.find(card =>card.id ===id)
+//   if (card) {
+//     res.json(card)
+//   }
+//   else {
+//     res.status(404).send('card not here')
+//   }
+// });
+/*CREATES and GETS BOARD/S in DATABASE show up on board 
+insomnia and also in npx prisma studio*/
+
+
+// let cards = [
+//   {id:1, title: "First Card", comment: "This is my first card.", author: "Eduardo Ramos", boardId: 1},
+//   {id:2, title: "First Card", comment: "This is my first card.", author: "Eduardo Ramos", boardId: 1}
+// ]

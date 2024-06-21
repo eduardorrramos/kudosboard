@@ -27,4 +27,3 @@ model Card {
   boardId Int?
   board   Board?  @relation(fields: [boardId], references: [id])
 }
-
