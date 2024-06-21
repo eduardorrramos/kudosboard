@@ -15,15 +15,16 @@ datasource db {
 
 model Board {
   id      Int    @id @default(autoincrement())
-  name    String
+  title    String
+  category String
+  author   String?
   cards   Card[] 
 }
 
 model Card {
   id      Int    @id @default(autoincrement())
-  title   String 
   comment String
-  author  String
+  author  String?
   boardId Int?
   board   Board?  @relation(fields: [boardId], references: [id])
 }

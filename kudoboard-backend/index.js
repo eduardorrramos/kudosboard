@@ -7,19 +7,34 @@ const cors = require('cors')
 
 app.use(express.json());
 app.use(cors());
-
-
+//  board has id name 
 app.post('/board', async (req, res) => {
-  const {name, id} = req.body;
+  const {id, title, category, author} = req.body;
   const newBoard = await prisma.board.create(
     {
     data: {
     id,
-    name
+    title,
+    category,
+    author
     }
   });
   res.status(201).json(newBoard)
 });
+/* ATTEMPTING TO MAKE LINKED CARDS*/
+app.post('/board/cards', async (req, res) => {
+  const {id, comment, author, boardId} = req.body;
+  const newCard = await prisma.card.create({
+    data: {
+      id, 
+      comment, 
+      author,
+      boardId
+    }
+  })
+  res.status(201).json(newCard)
+});
+
 app.get('/board/:id', async(req, res) => {
   const {id} = req.params
   const board = await prisma.board.findUnique(
@@ -48,20 +63,7 @@ app.get('/card', async (req, res) => {
   res.json(cards)
 });
 
-/* ATTEMPTING TO MAKE LINKED CARDS*/
-app.post('/board/cards', async (req, res) => {
-  const {id, title, comment, author, boardId} = req.body;
-  const newCard = await prisma.card.create({
-    data: {
-      id, 
-      title,
-      comment,
-      author,
-      boardId
-    }
-  })
-  res.status(201).json(newCard)
-});
+
 /* DOES NOT WORK CAN NOT FETCH ALL CARDS*/
 // app.get('/board/:category', async (req, res) => {
 //   // res.send('card');
