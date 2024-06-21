@@ -34,10 +34,13 @@ function CardOpen() {
     return (
         <div>
             <h1>{card.title}</h1>
+            <h2>{card.author}</h2>
+            <h1>{card.category}</h1>
             <Link to="/">
                 <button className="viewCardBoard">Close Board</button>
             </Link>
         </div>
+
     );
 }
 export default CardOpen

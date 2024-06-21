@@ -11,13 +11,19 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; /* na
 function App() {
   const [isCardCreatorOpen, setIsCardCreatorOpen] = useState(false);
 
+
   return (
     <Router>
       <header className="header">
       <h1 className="title">Kudosboard</h1>
       <SearchBar setIsCardCreatorOpen={setIsCardCreatorOpen}/>
+      
+
+
       </header>
+
       <CreateCardModal isCardCreatorOpen={isCardCreatorOpen} setIsCardCreatorOpen={setIsCardCreatorOpen}/>
+
       <div className="card">
 
       <Switch>

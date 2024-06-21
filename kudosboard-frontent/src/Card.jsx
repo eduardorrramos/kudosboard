@@ -9,7 +9,7 @@ function Card(props) {
     
     function handleCardClick (event)  {
         console.log(event.target)
-        navigate('/chosencard');
+        // navigate('/chosencard');
         return <div ></div>
     }
     function handleCardClose (event) {
@@ -23,7 +23,7 @@ function Card(props) {
         <h3 className="cardtitle"> {props.name} </h3>
 
         <button onClick={handleCardClose} className="cardCloseButton"></button> </div>
-        <Link to="/details">
+        <Link to={`/details/${props.id}`}>
         <button className="viewCardBoard">View Board</button>
         </Link>
         {/* <img 	/> */}

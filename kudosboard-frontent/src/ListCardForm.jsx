@@ -59,7 +59,7 @@ of data from one to the other*/
             <option value="volvo">Lifestyle</option>
             <option value="saab">Vacation</option>
             <option value="mercedes">Nightlife</option>
-            <option value="audi">Nauture</option>
+            <option value="audi">Nature</option>
         </select>
         </div>
 
