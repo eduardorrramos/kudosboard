@@ -7,3 +7,13 @@
     border-radius: 15px; 
     background-color: #f9f9f9; 
 }
+.modalboard {
+    margin: 5px;
+    width:250px;
+    height:350px;
+    display: inline-block;
+    position: relative;
+    border-radius: 15px; 
+    background-color: rgb(230, 0, 35);
+    ; 
+}

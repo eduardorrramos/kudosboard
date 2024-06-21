@@ -78,12 +78,14 @@ const getBoardCardData = () => {
 
     return (
         <div >
+            <div className="modalboard">
             <h1>{card.title}</h1>
             <h2>{card.author}</h2>
             <h3>{card.category}</h3>
             <Link to="/">
                 <button className="viewCardBoard">Close Board</button>
             </Link>
+            </div>
             {boardCards}
         </div>
     );
