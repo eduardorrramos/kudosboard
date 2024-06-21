@@ -4,10 +4,57 @@ import './CardOpen.css'
 import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import { useParams } from "react-router-dom";
+// import App from "./App";
+// import App from './App.jsx';
+// const cors = require('cors')
+// app.use(cors());
 
 function CardOpen() {
     const {id} = useParams();
     const [card, setCard] = useState([])
+    const apiKey = import.meta.env.VITE_APP_API_KEY
+    const [searchGif, setSearchGif] = useState('');
+    const [imgURL, setImgURL] = useState('');
+
+    const handleSearch = async (event) => {
+        const newSearchQuery = event.target.value;
+        setSearchGif(newSearchQuery);
+        if (!newSearchQuery.trim()) return;
+        const params = new URLSearchParams({
+            api_key: apiKey,
+            q: newSearchQuery,
+            limit: 10
+        });
+        try {
+            const response = await fetch(`https://api.giphy.com/v1/gifs/search?${params.toString()}`);
+            const data = await response.json();
+            if (data.data.length > 0) {
+                setImgURL(data.data[0].images.original.url);
+            }
+        } catch (error) {
+            console.error("Error searching for GIFs:", error);
+        }
+    };
+
+    // useEffect(() => {
+    //     fetchApi();
+    // }, []);
+    // const fetchApi = async () => {
+    //     let url ='https://api.giphy.com/v1/gifs/search';
+    //     const response = await fetch(url, 
+    //         {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Authorization': `Bearer ${apiKey}`
+    //             }
+    //         });
+    //     const readabledata = await response.json()
+    //     console.log(readabledata)
+
+    // };
+
+
+
 
     useEffect(() => {
         fetchCard();
@@ -32,11 +79,16 @@ function CardOpen() {
     console.log(card.cards)
 // fawofawnfowianfowainfowainfwaoifnwaokfnwaofknwaofknwaofkwanofwaknfownfwao
 const [dataFromCards, setDataFromCards] = useState([]);
+
+
 let thisboardcards = [];
 function closingacard (event) {
     let closingcard = event.target.closest('.oneboardcard')
     closingcard.remove();
 }
+
+
+
 useEffect(() => {
     getBoardCardData();
   }, []);
@@ -77,16 +129,23 @@ const getBoardCardData = () => {
         });
 
     return (
-        <div >
+        <div>
             <div className="modalboard">
             <h1>{card.title}</h1>
             <h2>{card.author}</h2>
+            <div>
+                <label htmlFor="imgURL">Gif:</label>
+                <input type="text" placeholder="Search Gifs..."
+                value={searchGif} onChange={handleSearch}/>
+                {imgURL ? <img src={imgURL} alt="gif" /> : null}
+                </div>
             <h3>{card.category}</h3>
             <Link to="/">
                 <button className="viewCardBoard">Close Board</button>
             </Link>
             </div>
             {boardCards}
+            
         </div>
     );
 }

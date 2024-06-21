@@ -89,13 +89,13 @@ function CardBoard({selectedKeyword}) {
         <>
         <div className="buttondashboard">
         
-        <button onClick={collectRecent} className="viewCardBoard">Recent</button>
+        <button onClick={collectRecent} className="viewBoard">Recent</button>
 
-        <button onClick={collectLifestyle} className="viewCardBoard">Lifestyle</button>
+        <button onClick={collectLifestyle} className="viewBoard">Lifestyle</button>
         
-        <button onClick={collectVacation} className="viewCardBoard">Vacation</button>
-        <button onClick={collectNightlife} className="viewCardBoard">Nightlife</button>
-        <button onClick={collectNature}className="viewCardBoard">Nature</button>
+        <button onClick={collectVacation} className="viewBoard">Vacation</button>
+        <button onClick={collectNightlife} className="viewBoard">Nightlife</button>
+        <button onClick={collectNature}className="viewBoard">Nature</button>
         </div>
 
         {cardComponents}

@@ -1,7 +1,7 @@
 .cardtemplate {
     margin: 5px;
     width:250px;
-    height:250px;
+    height:530px;
     display: inline-block;
     position: relative;
     border-radius: 15px;
@@ -28,4 +28,7 @@
 }
 .buttondashboard {
     margin-bottom: 25px;
+}
+.viewCardBoard {
+    background-color: #a9a9a9;
 }
