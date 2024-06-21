@@ -2,10 +2,10 @@ import './Card.css'
 import React from "react";
 import ReactDOM from "react-dom";
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import CardBoard from './CardBoard';
 
 function Card(props) {
-    const navigate = useNavigate();
     
     function handleCardClick (event)  {
         console.log(event.target)
@@ -19,9 +19,13 @@ function Card(props) {
     return (
     <div className="cardtemplate">
         <div className="topOfCard">
-        <h3 className="cardtitle"> {props.title} </h3>
+        <h3 className="cardtitle"> {props.id} </h3>
+        <h3 className="cardtitle"> {props.name} </h3>
+
         <button onClick={handleCardClose} className="cardCloseButton"></button> </div>
-        <button onClick={handleCardClick} className="viewCardBoard">View Board</button>
+        <Link to="/details">
+        <button className="viewCardBoard">View Board</button>
+        </Link>
         {/* <img 	/> */}
     </div>
     );
