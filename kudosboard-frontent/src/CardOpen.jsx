@@ -4,10 +4,6 @@ import './CardOpen.css'
 import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import { useParams } from "react-router-dom";
-// import App from "./App";
-// import App from './App.jsx';
-// const cors = require('cors')
-// app.use(cors());
 
 function CardOpen() {
     const {id} = useParams();
@@ -20,6 +16,11 @@ function CardOpen() {
         let closingcard = event.target.closest('.cardinsideofboard')
         closingcard.remove();
     }
+    function upvotebutton (event) {
+        const button = event.target;
+        button.style.color= 'red';
+    }
+
     const handleSearch = async (event) => {
         const newSearchQuery = event.target.value;
         setSearchGif(newSearchQuery);
@@ -54,7 +55,6 @@ function CardOpen() {
     //         });
     //     const readabledata = await response.json()
     //     console.log(readabledata)
-
     // };
 
     useEffect(() => {
@@ -123,6 +123,7 @@ const getBoardCardData = () => {
             <h3 className="cardtitle"> {oneboardcards.author} </h3>
             <img src={imgURL} alt="gif" />
             <button onClick={handlethisclose} className="cardCloseButton"></button> 
+            <button className='upvotebutton' onClick={upvotebutton}>UPVOTE</button>
 
         </div>
         );
@@ -142,65 +143,10 @@ const getBoardCardData = () => {
             <Link to="/">
                 <button className="viewCardBoard">Close Board</button>
             </Link>
+            
             </div>
             {boardCards}
         </div>
     );
 }
-
 export default CardOpen;
-
-/*
-
-      const cardComponents = filteredCards.map(individual => {
-        return (
-            <div className="cardtemplate">
-               <div className="topOfCard">
-            <h3 className="cardtitle"> {individual.id} </h3>
-            <h3 className="cardtitle"> {individual.title} </h3>
-            <button onClick={handleCardClose} className="cardCloseButton"></button> 
-               </div>
-               <div><h3 className="cardtitle"> {individual.category} </h3>
-               <img src={`https://picsum.photos/id/${individual.id}/200/300?grayscale`}/>
-            <h3 className="cardtitle"> {individual.author} </h3></div>
-            { add image here }
-            <Link to={`/details/${individual.id}`}>
-            <button className="viewCardBoard">View Board</button>
-            </Link>
-        </div>
-        );
-
-        });
-        return (
-        <>
-        <div className="buttondashboard">
-        
-        <button onClick={collectRecent} className="viewCardBoard">Recent</button>
-
-        <button onClick={collectLifestyle} className="viewCardBoard">Lifestyle</button>
-        
-        <button onClick={collectVacation} className="viewCardBoard">Vacation</button>
-        <button onClick={collectNightlife} className="viewCardBoard">Nightlife</button>
-        <button onClick={collectNature}className="viewCardBoard">Nature</button>
-        </div>
-
-        {cardComponents}
-        </>
-        )
-      
-
-    // const onecard = card.map(individual => {
-    //     return (
-            
-        // <div className="cardtemplate">
-        //     <div className="topOfCard">
-        //     <h3 className="cardtitle"> {individual.id} </h3>
-        //     <h3 className="cardtitle"> {individual.title} </h3>
-        //     <button onClick={handleCardClose} className="cardCloseButton"></button> </div>
-        //     <Link to={`/details/${individual.id}`}>
-        //     <button className="viewCardBoard">View Board</button>
-        //     </Link>
-        // </div>
-        // );});
-
-export default CardBoard; */
