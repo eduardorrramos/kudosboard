@@ -16,6 +16,10 @@ function CardOpen() {
     const [searchGif, setSearchGif] = useState('');
     const [imgURL, setImgURL] = useState('');
 
+    function handlethisclose (event) {
+        let closingcard = event.target.closest('.cardinsideofboard')
+        closingcard.remove();
+    }
     const handleSearch = async (event) => {
         const newSearchQuery = event.target.value;
         setSearchGif(newSearchQuery);
@@ -53,9 +57,6 @@ function CardOpen() {
 
     // };
 
-
-
-
     useEffect(() => {
         fetchCard();
       }, []);
@@ -80,14 +81,11 @@ function CardOpen() {
 // fawofawnfowianfowainfowainfwaoifnwaokfnwaofknwaofknwaofkwanofwaknfownfwao
 const [dataFromCards, setDataFromCards] = useState([]);
 
-
 let thisboardcards = [];
 function closingacard (event) {
     let closingcard = event.target.closest('.oneboardcard')
     closingcard.remove();
 }
-
-
 
 useEffect(() => {
     getBoardCardData();
@@ -124,6 +122,8 @@ const getBoardCardData = () => {
             <h3 className="cardtitle"> {oneboardcards.comment} </h3>
             <h3 className="cardtitle"> {oneboardcards.author} </h3>
             <img src={imgURL} alt="gif" />
+            <button onClick={handlethisclose} className="cardCloseButton"></button> 
+
         </div>
         );
         });
@@ -150,9 +150,6 @@ const getBoardCardData = () => {
 
 export default CardOpen;
 
-
-
-   
 /*
 
       const cardComponents = filteredCards.map(individual => {
