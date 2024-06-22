@@ -1,6 +1,5 @@
 import {useEffect,  useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+
 import './App.css'
 import SearchBar from './SearchBar'
 import CardBoard from './CardBoard'
@@ -8,7 +7,7 @@ import CreateCardModal from './CreateCardModal'
 import CardOpen from './CardOpen'
 import Header from './Header'
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; /* navigate page*/
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
 function App() {
   const [isCardCreatorOpen, setIsCardCreatorOpen] = useState(false);
   const [selectedKeyword, setSelectedKeyword] = useState('');
@@ -25,7 +24,6 @@ function App() {
       <CreateCardModal isCardCreatorOpen={isCardCreatorOpen} setIsCardCreatorOpen={setIsCardCreatorOpen}/>
 
       <div className="card">
-
       <Switch>
         <Route exact path='/'>
         <CardBoard selectedKeyword={selectedKeyword}/>
@@ -35,9 +33,11 @@ function App() {
         <CardOpen/>
         </Route>
       </Switch>
-
       </div>
-  
+      <footer className="footerpage">
+      <p><a className="emailfoot" href="eduardoramos@meta.com">eduardoramos@meta.com</a></p>
+      <p>Developed by Eduardo Ramos</p>
+</footer>
     </Router>
   )
 }

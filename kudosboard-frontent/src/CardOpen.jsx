@@ -20,7 +20,6 @@ function CardOpen() {
         const button = event.target;
         button.style.color= 'red';
     }
-
     const handleSearch = async (event) => {
         const newSearchQuery = event.target.value;
         setSearchGif(newSearchQuery);
@@ -41,22 +40,6 @@ function CardOpen() {
         }
     };
 
-    // useEffect(() => {
-    //     fetchApi();
-    // }, []);
-    // const fetchApi = async () => {
-    //     let url ='https://api.giphy.com/v1/gifs/search';
-    //     const response = await fetch(url, 
-    //         {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Authorization': `Bearer ${apiKey}`
-    //             }
-    //         });
-    //     const readabledata = await response.json()
-    //     console.log(readabledata)
-    // };
-
     useEffect(() => {
         fetchCard();
       }, []);
@@ -76,9 +59,6 @@ function CardOpen() {
           console.error(`Error fetching card: `, error);
         });
       };
-
-    console.log(card.cards)
-// fawofawnfowianfowainfowainfwaoifnwaokfnwaofknwaofknwaofkwanofwaknfownfwao
 const [dataFromCards, setDataFromCards] = useState([]);
 
 let thisboardcards = [];
@@ -100,21 +80,18 @@ const getBoardCardData = () => {
           return respo.json();
         })
         .then(data => {
-          console.log(data);
           setDataFromCards(data)
         })
         .catch(error => {
           console.error(`Error fetching card: `, error);
         });
       };
-      console.log(dataFromCards)
       let winningarray = []
       for (let i = 0; i < dataFromCards.length ; i++) {
         if (dataFromCards[i].boardId == id) {
             winningarray.push(dataFromCards[i])
         }
       }
-      console.log(winningarray)
       const boardCards = winningarray.map(oneboardcards => {
         return (
             <div className="cardinsideofboard">
@@ -137,7 +114,6 @@ const getBoardCardData = () => {
                 <label htmlFor="imgURL">Gif:</label>
                 <input type="text" placeholder="Search Gifs..."
                 value={searchGif} onChange={handleSearch}/>
-                {imgURL ? <img src={imgURL} alt="gif" /> : null}
                 </div>
             <h3>{card.category}</h3>
             <Link to="/">

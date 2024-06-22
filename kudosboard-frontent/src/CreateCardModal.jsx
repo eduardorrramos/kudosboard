@@ -8,9 +8,7 @@ function CreateCardModal({isCardCreatorOpen, setIsCardCreatorOpen}) {
     const [items, setItems] = useState([]);
     function addItem(newItem) {
         setItems(items => [...items, newItem]);
-        console.log(items)
     }
-
     function handleCloseButton() {
         setIsCardCreatorOpen(false);
     }
@@ -20,7 +18,7 @@ function CreateCardModal({isCardCreatorOpen, setIsCardCreatorOpen}) {
     return (
         <>
         <ListCardForm addItem={addItem}/>
-        <button onClick={handleCloseButton}></button>
+        {/* <button onClick={handleCloseButton}></button> */}
         </>
     );
 }

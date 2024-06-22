@@ -1,17 +1,15 @@
 import './CardBoard.css'
 import React from "react";
 import ReactDOM from "react-dom";
-import Card from './Card';
-import SearchBar from './SearchBar';
 import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 
+/*handles fetching information for our boards, and filtering them as well*/
 function CardBoard({selectedKeyword}) {
     const [card, setCard] = useState([]);
     const [selectedCat, setSelectedCat] = useState('');
     let filteredCards = [];
 
-    console.log({selectedKeyword})
     function handleCardClose (event) {
         let closingcard = event.target.closest('.cardtemplate')
         closingcard.remove();
@@ -29,37 +27,34 @@ function CardBoard({selectedKeyword}) {
           return response.json();
         })
         .then(data => {
-          console.log(data);
           setCard(data)
         })
         .catch(error => {
           console.error(`Error fetching card: `, error);
         });
       };
-      console.log(card)
+      /*establishes the categories we will be parsing*/
       const collectLifestyle = () => {
-        setSelectedCat('Lifestyle'); // update the selected category state variable
+        setSelectedCat('Lifestyle'); 
       };
       const collectVacation = () => {
-        setSelectedCat('Vacation'); // update the selected category state variable
+        setSelectedCat('Vacation'); 
       };
       const collectNightlife = () => {
-        setSelectedCat('Nightlife'); // update the selected category state variable
+        setSelectedCat('Nightlife'); 
       };
       const collectNature = () => {
-        setSelectedCat('Nature'); // update the selected category state variable
+        setSelectedCat('Nature');
       };
       const collectRecent = () => {
-        setSelectedCat('Recent'); // update the selected category state variable
+        setSelectedCat('Recent'); 
       };
-
+      /*filters through our received card data based on category and recents*/
       if (selectedKeyword !== '') {
         filteredCards = card.filter(card => card.title == selectedKeyword);
       }
       else if (selectedCat === 'Recent') {
         filteredCards = card.sort((a, b) => b.id - a.id);
-
-        console.log(filteredCards)
       }
       else {
       filteredCards = card.filter(card => card.category === selectedCat ||
@@ -88,34 +83,14 @@ function CardBoard({selectedKeyword}) {
         return (
         <>
         <div className="buttondashboard">
-        
         <button onClick={collectRecent} className="viewBoard">Recent</button>
-
         <button onClick={collectLifestyle} className="viewBoard">Lifestyle</button>
-        
         <button onClick={collectVacation} className="viewBoard">Vacation</button>
         <button onClick={collectNightlife} className="viewBoard">Nightlife</button>
         <button onClick={collectNature}className="viewBoard">Nature</button>
         </div>
-
         {cardComponents}
         </>
         )
-      
-
-    // const onecard = card.map(individual => {
-    //     return (
-            
-        // <div className="cardtemplate">
-        //     <div className="topOfCard">
-        //     <h3 className="cardtitle"> {individual.id} </h3>
-        //     <h3 className="cardtitle"> {individual.title} </h3>
-        //     <button onClick={handleCardClose} className="cardCloseButton"></button> </div>
-        //     {/* add image here */}
-        //     <Link to={`/details/${individual.id}`}>
-        //     <button className="viewCardBoard">View Board</button>
-        //     </Link>
-        // </div>
-        // );});
 }
 export default CardBoard;
