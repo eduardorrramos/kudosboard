@@ -1,8 +1,6 @@
-# React + Vite
+# Unit Assignment: Kudos Board
 
-## Unit Assignment: Kudos Board
-
-Submitted by: Eduardo Ramos
+## Submitted by: Eduardo Ramos
 
 Deployed Application (optional): [Kudos Board Deployed Site](ADD_LINK_HERE)
 
